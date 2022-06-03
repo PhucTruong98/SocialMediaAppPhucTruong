@@ -19,7 +19,7 @@ a {
   --bg-third: #e4e6eb;
   --bg-forth: #f0f2f5;
   --color-primary: #050505;
-  --color-secondary: #65676b;
+  --color-secondary: #6b6567;
   --divider: #ced0d4;
   --dark-bg-primary: #18191a;
   --dark-bg-secondary: #242526;
@@ -35,3 +35,23 @@ a {
   --shadow-3: rgba(0, 0, 0, 0.3);
   --shadow-inset: rgba(255, 255, 255, 0.5);
 }
+
+
+/*------Buttons-------*/
+.blue_btn {
+  border: none;
+  outline: none;
+  padding: 8.5px 12px;
+  border-radius: 7px;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 14px;
+  color: #e7f3ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  background: var(--blue-color);
+}
+/*------Buttons-------*/
