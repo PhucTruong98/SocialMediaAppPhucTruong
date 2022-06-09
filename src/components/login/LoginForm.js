@@ -3,14 +3,27 @@ import { Form, Formik } from "formik";
 import { Link, NavLink } from "react-router-dom";
 import LoginInput from "../../components/inputs/loginInput";
 import * as Yup from "yup";
-
+import DotLoader from "react-spinners/DotLoader";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import Cookies from "js-cookie";
+import {useNavigate} from "react-router-dom";
 
 const loginInfos = {
   email: "",
   password: "",
 };
 
-export default function LoginForm() {
+export default function LoginForm({setVisible}) {
+
+        //nagivation object
+        const navigate = useNavigate();
+        const dispatch = useDispatch();
+  //use for api connection
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const [loading, setLoading] = useState(false);
+
     const [login, setLogin] = useState(loginInfos);
     const { email, password } = login;
     const loginValidation = Yup.object({
@@ -28,6 +41,23 @@ export default function LoginForm() {
     };
 
 
+    const loginSubmit = async () => {
+        try {
+            setLoading(true);
+            const data = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/login`,
+            {
+            
+                email,
+                password
+            });
+            dispatch({type: "LOGIN", payload: data});
+            Cookies.set("user", JSON.stringify(data));
+        }
+        catch (error) {
+            setLoading(false);
+            setError(error.response.data.message);
+        }
+    }
   return (
     <div className="login_wrap">
     <div className="login_1">
@@ -42,6 +72,9 @@ export default function LoginForm() {
           enableReinitialize
           initialValues={{ email, password }}
           validationSchema={loginValidation}
+          onSubmit={() => {
+              loginSubmit();
+          }}
         >
           {(formik) => (
             <Form>
@@ -70,12 +103,13 @@ export default function LoginForm() {
           Forgoten password?
         </Link>
         <div className="sign_splitter"></div>
-        <button className="blue_btn open_signup">Create Account</button>
+        <button className="blue_btn open_signup" onClick={() => setVisible(true)}>Create Account</button>
       </div>
       <Link to={"/"} className="sign_extra">
         <b>Create a Page </b>
         for celebrity, business or brand
       </Link>
+      {error && <div className="error_text">{error}</div>  }
     </div>
   </div>  )
 }
