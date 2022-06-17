@@ -55,3 +55,31 @@ a {
   background: var(--blue-color);
 }
 /*------Buttons-------*/
+
+/*------Hover-------*/
+.hover1:hover {
+  background: var(--bg-secondary);
+}
+.hover2:hover {
+  background: var(--bg-third);
+}
+/*------Hover-------*/
+
+.card {
+  height: 500px;
+  width: 500px;
+  background: red;
+
+}
+
+
+/*------Scroll bar-------*/
+
+.scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  background: #aeaeafa1;
+  border-radius: 5px;
+}

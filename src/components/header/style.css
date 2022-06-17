@@ -172,6 +172,7 @@ header {
     max-height: 70vh;
     padding: 8px 16px 10px 6px;
   }
+
   .search_wrap {
     display: flex;
     align-items: center;
