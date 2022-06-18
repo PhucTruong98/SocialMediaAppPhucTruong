@@ -39,7 +39,7 @@ export default function Header() {
 
   //retrieving user data data from cookie
   let { user } = useSelector((user) => ({ ...user }));
-  //user = user.data ? user.data : null;
+  user = user.data;
   console.log("redux test", user);
 
   const color = "#65676";
@@ -95,7 +95,7 @@ export default function Header() {
           <span>{user?.first_name}</span>
         </Link>
         <div
-          class="circle_icon hover1"
+          class={`circle_icon hover1 ${showAllMenu && "active_header"}`}
           onClick={() => {
             setShowAllMenu(!showAllMenu);
           }}
@@ -104,14 +104,14 @@ export default function Header() {
           <Menu />
           {showAllMenu && <AllMenu />}
         </div>
-        <div class="circle_icon hover1">
+        <div class={`circle_icon hover1`}>
           <Messenger />
         </div>
         <div class="circle_icon hover1">
           <Notifications />
           <div class="right_notification">5</div>
         </div>
-        <div class="circle_icon hover1" ref={userMenu}>
+        <div class={`circle_icon hover1 ${showUserMenu && "active_header"}`} ref={userMenu}>
           <div
             onClick={() => {
               setShowUserMenu(!showUserMenu);
